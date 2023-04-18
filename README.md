@@ -6,7 +6,7 @@
 [![Bagde: GitHub](https://img.shields.io/github/license/cyclenerd/terraform-google-wif-service-account)](https://github.com/Cyclenerd/terraform-google-wif-service-account/blob/master/LICENSE)
 
 With this Terraform module you can allow login via Google Cloud Workload Identity Pool and Provider for Google Cloud service accounts.
-For example for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-github) or [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab).
+Works best together with the Terraform modules for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-github) and [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab).
 
 ## Example
 
