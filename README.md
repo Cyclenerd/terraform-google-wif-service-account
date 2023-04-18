@@ -49,6 +49,21 @@ module "github-service-account" {
 }
 ```
 
+You can secure it even more by using the subject (`attribute.sub`).
+This example checks the subject and only allows login from the `prod` environment:
+```hcl
+# Allow service account to login via WIF
+module "github-service-account" {
+  source     = "Cyclenerd/wif-service-account/google"
+  version    = "1.0.0"
+  project_id = "your-project-id"
+  pool_name  = module.github-wif.pool_name
+  account_id = data.google_service_account.github.account_id
+  repository = "octo-org/octo-repo"
+  subject    = "repo:octo-org/octo-repo:environment:prod"
+}
+```
+
 👉 [**More examples**](https://github.com/Cyclenerd/terraform-google-wif-service-account/tree/master/examples)
 
 <!-- BEGIN_TF_DOCS -->
