@@ -1,37 +1,78 @@
-# My Template
+# Allow Login via WIF for Service Accounts
 
-This is my template repository to generate new repositories with the same directory structure and files.
+[![Bagde: Google Cloud](https://img.shields.io/badge/Google%20Cloud-%234285F4.svg?logo=google-cloud&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Badge: Terraform](https://img.shields.io/badge/Terraform-%235835CC.svg?logo=terraform&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Bagde: CI](https://github.com/Cyclenerd/terraform-google-wif-service-account/actions/workflows/ci.yml/badge.svg)](https://github.com/Cyclenerd/terraform-google-wif-service-account/actions/workflows/ci.yml)
+[![Bagde: GitHub](https://img.shields.io/github/license/cyclenerd/terraform-google-wif-service-account)](https://github.com/Cyclenerd/terraform-google-wif-service-account/blob/master/LICENSE)
 
-1. Replace `template` with new repo name (<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>H</kbd>)
+With this Terraform module you can allow login via Google Cloud Workload Identity Pool and Provider for Google Cloud service accounts.
+For example for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-gitlab) or [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab).
 
-[![CI](https://github.com/Cyclenerd/template/actions/workflows/ci.yml/badge.svg)](https://github.com/Cyclenerd/template/actions/workflows/ci.yml)
-[![GitHub](https://img.shields.io/github/license/cyclenerd/template)](https://github.com/Cyclenerd/template/blob/master/LICENSE)
-[![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/googlecloud?label=Google%20Cloud%20Platform&style=social)](https://www.reddit.com/r/googlecloud/comments/va0cc0/automating_cost_control_by_capping_google_cloud/)
+## Example
 
-## 🧑‍💻 Development
+Create Workload Identity Pool and Provider:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Cyclenerd/template)
+```hcl
+# Create Workload Identity Pool Provider for GitHub
+module "github-wif" {
+  source     = "Cyclenerd/wif-github/google"
+  version    = "1.0.0"
+  project_id = "your-project-id"
+}
 
-### Requirements
+# Get the Workload Identity Pool Provider resource name for GitHub Actions configuration
+output "github-workload-identity-provider" {
+  description = "The Workload Identity Provider resource name"
+  value       = module.github-wif.provider_name
+}
+```
 
-* A
-* B
-* C
+> Terraform module [`Cyclenerd/wif-github/google`](https://github.com/Cyclenerd/terraform-google-wif-github) is used.
 
-## ❤️ Contributing
+Allow service account to login via Workload Identity Provider and limit login only from the GitHub repo `octo-org/octo-repo`:
 
-Have a patch that will benefit this project?
-Awesome! Follow these steps to have it accepted.
+```hcl
+# Get existing service account for GitHub Actions
+data "google_service_account" "github" {
+  project    = "your-project-id"
+  account_id = "existing-account-for-github-action"
+}
 
-1. Please read [how to contribute](CONTRIBUTING.md).
-1. Fork this Git repository and make your changes.
-1. Create a Pull Request.
-1. Incorporate review feedback to your changes.
-1. Accepted!
+# Allow service account to login via WIF
+module "github-service-account" {
+  source     = "Cyclenerd/wif-service-account/google"
+  version    = "1.0.0"
+  project_id = "your-project-id"
+  pool_name  = module.github-wif.pool_name
+  account_id = data.google_service_account.github.account_id
+  repository = "octo-org/octo-repo"
+}
+```
 
+👉 [**More examples**](https://github.com/Cyclenerd/terraform-google-wif-service-account/tree/master/examples)
 
-## 📜 License
+<!-- BEGIN_TF_DOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | >= 4.61.0 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_account_id"></a> [account\_id](#input\_account\_id) | The account id of the existing service account | `string` | n/a | yes |
+| <a name="input_pool_name"></a> [pool\_name](#input\_pool\_name) | The resource name of the Workload Identity Pool | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The ID of the project | `string` | n/a | yes |
+| <a name="input_repository"></a> [repository](#input\_repository) | Repository patch (i.e. 'Cyclenerd/google-workload-identity-federation') | `string` | n/a | yes |
+| <a name="input_subject"></a> [subject](#input\_subject) | Subject (i.e. 'repo:username/reponame:ref:refs/heads/main') | `string` | `null` | no |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
+
+## License
 
 All files in this repository are under the [Apache License, Version 2.0](LICENSE) unless noted otherwise.
-
-Please note: No warranty
