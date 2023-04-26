@@ -9,7 +9,7 @@ With this Terraform module you can allow login via Google Cloud Workload Identit
 Works best together with the Terraform modules for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-github) and [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab).
 
 Service account keys are a security risk if compromised.
-Avoid service account keys and instead use the [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation).
+Avoid service account keys and instead use the [Workload Identity Federation](https://github.com/Cyclenerd/google-workload-identity-federation#readme).
 For more information about Workload Identity Federation and how to best authenticate service accounts on Google Cloud, please see my GitHub repo [Cyclenerd/google-workload-identity-federation](https://github.com/Cyclenerd/google-workload-identity-federation#readme).
 
 ## Example
