@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Nils Knieling
+ * Copyright 2023-2025 Nils Knieling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ variable "account_id" {
 variable "repository" {
   type        = string
   description = "Repository patch (i.e. 'Cyclenerd/google-workload-identity-federation')"
+  default     = null
 }
 
 # SUBJECT
@@ -56,6 +57,6 @@ variable "repository" {
 
 variable "subject" {
   type        = string
-  description = "Subject (i.e. 'repo:username/reponame:ref:refs/heads/main')"
+  description = "Subject (i.e. 'repo:username/reponame:ref:refs/heads/main'). If not set `repository` is used."
   default     = null
 }
