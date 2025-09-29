@@ -49,6 +49,11 @@ variable "repository" {
   type        = string
   description = "Repository patch (i.e. 'Cyclenerd/google-workload-identity-federation')"
   default     = null
+
+  validation {
+    condition     = (var.repository == null && var.subject != null) || (var.repository != null && var.subject == null)
+    error_message = "Either 'repository' or 'subject' must be set, but not both."
+  }
 }
 
 # SUBJECT
@@ -57,6 +62,6 @@ variable "repository" {
 
 variable "subject" {
   type        = string
-  description = "Subject (i.e. 'repo:username/reponame:ref:refs/heads/main'). If not set `repository` is used."
+  description = "Subject (i.e. 'repo:username/reponame:ref:refs/heads/main')"
   default     = null
 }

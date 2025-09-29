@@ -70,6 +70,9 @@ module "github-service-account" {
 
 👉 [**More examples**](https://github.com/Cyclenerd/terraform-google-wif-service-account/tree/master/examples)
 
+> [!NOTE]
+> Either `subject` or `repository` must be set, but not both.
+
 <!-- BEGIN_TF_DOCS -->
 ## Providers
 
@@ -85,7 +88,7 @@ module "github-service-account" {
 | <a name="input_pool_name"></a> [pool\_name](#input\_pool\_name) | The resource name of the Workload Identity Pool | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The ID of the project | `string` | n/a | yes |
 | <a name="input_repository"></a> [repository](#input\_repository) | Repository patch (i.e. 'Cyclenerd/google-workload-identity-federation') | `string` | `null` | no |
-| <a name="input_subject"></a> [subject](#input\_subject) | Subject (i.e. 'repo:username/reponame:ref:refs/heads/main'). If not set `repository` is used. | `string` | `null` | no |
+| <a name="input_subject"></a> [subject](#input\_subject) | Subject (i.e. 'repo:username/reponame:ref:refs/heads/main') | `string` | `null` | no |
 
 ## Outputs
 
