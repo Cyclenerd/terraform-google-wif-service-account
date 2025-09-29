@@ -2,11 +2,15 @@
 
 [![Badge: Google Cloud](https://img.shields.io/badge/Google%20Cloud-%234285F4.svg?logo=google-cloud&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
 [![Badge: Terraform](https://img.shields.io/badge/Terraform-%235835CC.svg?logo=terraform&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Badge: Bitbucket](https://img.shields.io/badge/Bitbucket-0052CC.svg?logo=bitbucket&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Badge: GitHub](https://img.shields.io/badge/GitHub-181717.svg?logo=github&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Badge: GitLab](https://img.shields.io/badge/GitLab-FC6D26.svg?logo=gitlab&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
+[![Badge: Jenkins](https://img.shields.io/badge/Jenkins-D24939.svg?logo=jenkins&logoColor=white)](https://github.com/Cyclenerd/terraform-google-wif-service-account#readme)
 [![Badge: CI](https://github.com/Cyclenerd/terraform-google-wif-service-account/actions/workflows/ci.yml/badge.svg)](https://github.com/Cyclenerd/terraform-google-wif-service-account/actions/workflows/ci.yml)
-[![Badge: GitHub](https://img.shields.io/github/license/cyclenerd/terraform-google-wif-service-account)](https://github.com/Cyclenerd/terraform-google-wif-service-account/blob/master/LICENSE)
+[![Badge: License](https://img.shields.io/github/license/cyclenerd/terraform-google-wif-service-account)](https://github.com/Cyclenerd/terraform-google-wif-service-account/blob/master/LICENSE)
 
 With this Terraform module you can allow login via Google Cloud Workload Identity Pool and Provider for Google Cloud service accounts.
-Works best together with the Terraform modules for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-github) and [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab).
+Works best together with the Terraform modules for [GitHub Actions](https://github.com/Cyclenerd/terraform-google-wif-github), [GitLab CI](https://github.com/Cyclenerd/terraform-google-wif-gitlab), [Jenkins](https://github.com/Cyclenerd/terraform-google-wif-jekins) and [Bitbucket](https://github.com/Cyclenerd/terraform-google-wif-bitbucket).
 
 Service account keys are a security risk if compromised.
 Avoid service account keys and instead use the [Workload Identity Federation](https://github.com/Cyclenerd/google-workload-identity-federation#readme).
