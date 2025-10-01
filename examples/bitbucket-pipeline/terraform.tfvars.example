@@ -1,0 +1,5 @@
+project_id                  = "your-project-id"
+bitbucket_issuer_uri        = "your-bitbucket-identity-provider-url"
+bitbucket_allowed_audiences = ["your-bitbucket-identity-provider-audience"]
+bitbucket_repository        = "your-bitbucket-repository-uuid"
+bitbucket_account_id        = "bitbucket-pipeline"

@@ -24,7 +24,7 @@ Create Workload Identity Pool and Provider:
 # Create Workload Identity Pool Provider for GitHub
 module "github-wif" {
   source     = "Cyclenerd/wif-github/google"
-  version    = "~> 1.0.0"
+  version    = "~> 1.0"
   project_id = "your-project-id"
 }
 
@@ -49,7 +49,7 @@ data "google_service_account" "github" {
 # Allow service account to login via WIF
 module "github-service-account" {
   source     = "Cyclenerd/wif-service-account/google"
-  version    = "~> 1.0.0"
+  version    = "~> 1.1"
   project_id = "your-project-id"
   pool_name  = module.github-wif.pool_name
   account_id = data.google_service_account.github.account_id
@@ -63,7 +63,7 @@ This example checks the subject and only allows login from the `prod` environmen
 # Allow service account to login via WIF
 module "github-service-account" {
   source     = "Cyclenerd/wif-service-account/google"
-  version    = "~> 1.0.0"
+  version    = "~> 1.1"
   project_id = "your-project-id"
   pool_name  = module.github-wif.pool_name
   account_id = data.google_service_account.github.account_id
@@ -74,8 +74,9 @@ module "github-service-account" {
 
 👉 [**More examples**](https://github.com/Cyclenerd/terraform-google-wif-service-account/tree/master/examples)
 
-> [!NOTE]
-> Either `subject` or `repository` must be set, but not both.
+| ⚠️ WARNING |
+|---|
+| Either `subject` or `repository` must be set, but not both. |
 
 <!-- BEGIN_TF_DOCS -->
 ## Providers

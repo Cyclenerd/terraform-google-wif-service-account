@@ -1,0 +1,3 @@
+project_id         = "your-project-id"
+jenkins_account_id = "jenkins-build-gcp-test"
+jenkins_build_url  = "http://jenkins.localhost:2529/job/gcp-test/"
